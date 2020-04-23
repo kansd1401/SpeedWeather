@@ -59,6 +59,7 @@ export default function Weather() {
             <div>
               <img src={city.current.weather_icons[0]} />
               <h3>{city.location.name}</h3>
+              <p>{city.current.weather_descriptions[0]}</p>
             </div>
           </Marker>): ""}
     </ReactMapGL>)
