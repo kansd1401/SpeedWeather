@@ -57,7 +57,10 @@ export default function Weather() {
       mapStyle="mapbox://styles/kansd1401/ck9c4xsfg07sc1io0kb0jsvi0">
         {data !== null ? data.map( (city,i) => 
           <Marker key={i} latitude={Number(city.location.lat)} longitude={Number(city.location.lon)}> 
-            
+            <MarkerInfo 
+              current={city.current}
+              name={city.location.name}
+            />
           </Marker>): ""}
     </ReactMapGL>)
 }
