@@ -6,11 +6,11 @@ export default function MarkerInfo(props) {
       <div className="marker">
         <img className="marker__img" src={props.current.weather_icons[0]} />
         <div className="marker__info">
+          <p>{props.name}</p>
           <div className="marker__info--temp">
-            <h3>{props.name}</h3>
-            <p>{props.current.temperature}°C</p>
-          </div>
-          <p>{props.current.weather_descriptions[0]}</p>
+            <p>{props.current.temperature}</p>
+            <div>°C</div>
+          </div>          
         </div>
       </div>
   )

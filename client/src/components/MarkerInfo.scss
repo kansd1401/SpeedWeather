@@ -1,15 +1,45 @@
 .marker{
+  color: white;
   display: flex;
   flex-direction: row;
+  max-height: 6rem;
+  border-radius: 20%;
   &__img{
-
+    // border-radius: 10%;
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
+    height: 6rem;
+    width: 6rem;
   }
 
   &__info{
-
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    background-color: rgb(167, 167, 167);
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
+    p{
+      font-size: larger;
+      font-weight: bold;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;  
+    }
 
     &--temp{
-    
+      display: flex;
+      flex-direction: row;
+
+      p{
+        font-size: xx-large;
+        font-weight: bolder;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;  
+       }
+      div{
+        margin: 0.2rem;
+        font-size: medium;
+        font-weight: bold;
+      }
     }
     
   }
