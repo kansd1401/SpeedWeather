@@ -14,20 +14,39 @@ export default function Weather() {
     height: "100vh",
     zoom: 5
   })
+  const [data, setData] = useState(null)
+
+  const getWeatherData = (locations) => {
+    let data = []
+    const requests = locations.map( (location) => {
+      return new Promise( (resolve, reject) => {
+        $.ajax({
+          url: "http://api.weatherstack.com/current",
+          type: "GET",
+          data: { 
+            access_key: process.env.REACT_APP_WEATHERSTACK_TOKEN,
+            query: `${location.name}, British Columbia`
+          },
+          success: (res) => {
+            console.log(res)
+            data.push(res)
+            resolve(res)
+          },
+          error: (res) => {
+            reject(res)
+          }
+        })
+      })
+    })
+    Promise.all(requests).then((values) => {
+      setData(data)
+      console.log(values)
+    })
+  }
 
   useEffect( () => {
-    $.ajax({
-      url: "http://api.weatherstack.com/current",
-      type: "GET",
-      data: { 
-        access_key: process.env.REACT_APP_WEATHERSTACK_TOKEN,
-        query: `${locations[0].name}, British Columbia`
-      },
-      success: (res) => {
-        console.log(res)
-      }
-    })
-  })
+    getWeatherData(locations)
+  },[])
 
   return (
     <ReactMapGL {...viewport}   
