@@ -28,11 +28,11 @@ export default function Weather() {
             query: `${location.name}, British Columbia`
           },
           success: (res) => {
-            console.log(res)
             data.push(res)
             resolve(res)
           },
           error: (res) => {
+            console.log(res)
             reject(res)
           }
         })
@@ -40,7 +40,7 @@ export default function Weather() {
     })
     Promise.all(requests).then((values) => {
       setData(data)
-      console.log(values)
+      console.log(data)
     })
   }
 
@@ -54,9 +54,12 @@ export default function Weather() {
       //Without this function user can't move around or zoom in/out on the map.
       onViewportChange={viewport => setViewport(viewport)}
       mapStyle="mapbox://styles/kansd1401/ck9c4xsfg07sc1io0kb0jsvi0">
-        {locations.map( location => 
-          <Marker key={location.id} latitude={location.latitude} longitude={location.longitude}> 
-            <div>{location.name}</div>
-          </Marker>)}
+        {data !== null ? data.map( (city,i) => 
+          <Marker key={i} latitude={Number(city.location.lat)} longitude={Number(city.location.lon)}> 
+            <div>
+              <img src={city.current.weather_icons[0]} />
+              <h3>{city.location.name}</h3>
+            </div>
+          </Marker>): ""}
     </ReactMapGL>)
 }
