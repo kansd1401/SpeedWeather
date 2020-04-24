@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import ReactMapGL,{Marker} from "react-map-gl"
+import ReactMapGL,{Marker, Popup} from "react-map-gl"
 import * as $ from 'jquery';
 import MarkerInfo from './MarkerInfo'
 
@@ -16,6 +16,7 @@ export default function Weather() {
     zoom: 5
   })
   const [data, setData] = useState(null)
+  const [selected, setSelected] = useState(null)
 
   const getWeatherData = (locations) => {
     let data = []
@@ -58,9 +59,16 @@ export default function Weather() {
         {data !== null ? data.map( (city,i) => 
           <Marker key={i} latitude={Number(city.location.lat)} longitude={Number(city.location.lon)}> 
             <MarkerInfo 
+              onClick={() => setSelected(city)}
               current={city.current}
               name={city.location.name}
             />
           </Marker>): ""}
+          {selected !== null && 
+          <Popup latitude={Number(selected.location.lat)} longitude={Number(selected.location.lon)}>
+            yo
+          </Popup>
+
+          }
     </ReactMapGL>)
 }
