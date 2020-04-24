@@ -19,7 +19,6 @@ export default function Weather() {
   const [selected, setSelected] = useState(null)
 
   const getWeatherData = (locations) => {
-    let data = []
     const requests = locations.map( (location) => {
       return new Promise( (resolve, reject) => {
         $.ajax({
@@ -30,7 +29,6 @@ export default function Weather() {
             query: `${location.name}, British Columbia`
           },
           success: (res) => {
-            data.push(res)
             resolve(res)
           },
           error: (res) => {
@@ -41,7 +39,7 @@ export default function Weather() {
       })
     })
     Promise.all(requests).then((values) => {
-      setData(data)
+      setData(values)
       console.log(data)
     })
   }
@@ -62,6 +60,7 @@ export default function Weather() {
               onClick={() => setSelected(city)}
               current={city.current}
               name={city.location.name}
+              selected={selected ? selected.location.name === city.location.name: false}
             />
           </Marker>): ""}
           {selected !== null && 
