@@ -65,7 +65,7 @@ export default function Weather() {
             />
           </Marker>): ""}
           {selected !== null && 
-          <Popup latitude={Number(selected.location.lat)} longitude={Number(selected.location.lon)}>
+          <Popup latitude={Number(selected.location.lat)} longitude={Number(selected.location.lon)} onClose={()=> setSelected(null)}>
             yo
           </Popup>
 
