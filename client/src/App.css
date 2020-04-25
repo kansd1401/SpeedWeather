@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.sidebar{
+  /* display:  */
+  max-width: 10%;
+  min-height: 100%;
+  margin-right: 0;
+}

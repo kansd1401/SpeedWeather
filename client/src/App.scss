@@ -1,0 +1,15 @@
+.sidebar{
+  position: fixed;
+  z-index: 1;
+  max-width: 20%;
+  min-height: 100%;
+  background-color: rgb(167, 167, 167);
+  color: white;
+  display: flex;
+  flex-direction: column-reverse;
+  box-shadow: 15px 0px rgba(0, 0, 0, 0.418);
+  h1{
+    margin: 2rem;
+    margin-bottom: 4rem;
+  }
+}
