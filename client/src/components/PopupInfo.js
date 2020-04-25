@@ -2,6 +2,7 @@ import React from 'react'
 import './PopupInfo.scss'
 
 export default function PopupInfo(props) {
+  //We can use get day to display todays day.
 const days = ["SUN","MON","TUE","WED","THU","FRI","SAT"]
 const day = new Date()
   return (

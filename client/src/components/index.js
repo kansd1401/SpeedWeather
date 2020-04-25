@@ -40,8 +40,16 @@ export default function Weather() {
       })
     })
     Promise.all(requests).then((values) => {
-      setData(values)
+      //Gets all the errors and puts them into an array
+      const errors = values.every( value => value.error
+      )
       console.log(values)
+      //if no arrays we set values to data else we print errors
+      if(!errors){
+        setData(values)
+      }else{
+        console.log("Trouble retrieving live weather data from API")
+      }
     })
   }
 
@@ -55,7 +63,7 @@ export default function Weather() {
       //Without this function user can't move around or zoom in/out on the map.
       onViewportChange={viewport => setViewport(viewport)}
       mapStyle="mapbox://styles/kansd1401/ck9c4xsfg07sc1io0kb0jsvi0">
-        {data !== null ? data.map( (city,i) => 
+        {data !== null && data.map( (city,i) => 
           <Marker key={i} latitude={Number(city.location.lat)} longitude={Number(city.location.lon)}> 
             <MarkerInfo 
               onClick={() => setSelected(city)}
@@ -63,14 +71,11 @@ export default function Weather() {
               name={city.location.name}
               selected={selected ? selected.location.name === city.location.name: false}
             />
-          </Marker>): ""}
+          </Marker>)}
           {selected !== null && 
           <Popup latitude={Number(selected.location.lat)} longitude={Number(selected.location.lon)} onClose={()=> setSelected(null)}>
             <PopupInfo className="container-popup" {...selected}>
-            yo
             </PopupInfo>
-          </Popup>
-
-          }
+          </Popup>}
     </ReactMapGL>)
 }
