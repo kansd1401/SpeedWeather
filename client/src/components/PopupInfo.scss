@@ -1,0 +1,80 @@
+.popup{
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  color:rgb(87, 82, 82);
+  &__location{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    p{
+      margin-top: 0;
+      margin-bottom: 0.3rem;
+    }
+    &--city{
+      font-size: larger;
+      font-weight: bold;
+    }
+
+    &--time{
+      font-size: large; 
+    }
+
+    &--desc{
+      font-size: large;
+    }
+  }
+
+  &__info{
+    display: flex;
+    flex-direction: row;
+
+    &--temp{
+      display: flex;
+      flex-direction: row;
+      margin-left: .5rem;
+      p{
+        font-size: 5rem;
+        margin-top: 0;
+        margin-bottom: 0;
+        // color: black;
+       }
+      div{
+        margin: 0.2rem;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__img{
+    height: 5rem;
+    width: 5rem;  
+    border-radius: 10%;
+  }
+
+  &__right{
+    margin-left: 2rem;
+    margin-top: 7.8rem;
+    display: flex;
+    flex-direction: row ;
+    text-align: left;
+    p{
+      margin-top: 0;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  &__stats{
+    margin-left: 0.5rem;
+    p{
+
+    }
+  }
+}
+
+.container-popup{
+  background-color: grey;
+
+}
