@@ -10,11 +10,11 @@ const locations = [{name: "Dease Lake"},{name: "Fort Nelson"},{name: "Terrace"},
 export default function Weather() {
   //longitude and latitude of bc so we can set that in the viewport of the map
   const [viewport,setViewport] = useState({
-    latitude:	53.726669,
+    latitude:	54.726669,
     longitude: -127.647621,
     width: "100vw",
     height: "100vh",
-    zoom: 5
+    zoom: 5.2
   })
   const [data, setData] = useState(null)
   const [selected, setSelected] = useState(null)
@@ -56,7 +56,7 @@ export default function Weather() {
 
   useEffect( () => {
     getWeatherData(locations)
-    //Will get new data every hour    
+    //Will get new data every hour  and update the app   
     setInterval(function(){
         getWeatherData(locations)
     }, 60*60*1000)
@@ -66,7 +66,8 @@ export default function Weather() {
     <ReactMapGL {...viewport}   
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       //Without this function user can't move around or zoom in/out on the map.
-      onViewportChange={viewport => setViewport(viewport)}
+      //Camera currently locked since user will be focusing on only the cities in BC.
+      // onViewportChange={viewport => setViewport(viewport)}
       mapStyle="mapbox://styles/kansd1401/ck9c4xsfg07sc1io0kb0jsvi0">
         {data !== null && data.map( (city,i) => 
           <Marker key={i} latitude={Number(city.location.lat)} longitude={Number(city.location.lon)}> 
