@@ -14,7 +14,7 @@ export default function Weather() {
     longitude: -127.647621,
     width: "100vw",
     height: "100vh",
-    zoom: 5.2
+    zoom: 5
   })
   const [data, setData] = useState(null)
   const [selected, setSelected] = useState(null)
@@ -24,7 +24,7 @@ export default function Weather() {
     const requests = locations.map( (location) => {
       return new Promise( (resolve, reject) => {
         $.ajax({
-          url: "http://api.weatherstack.com/current",
+          url: "https://api.weatherstack.com/current",
           type: "GET",
           data: { 
             access_key: process.env.REACT_APP_WEATHERSTACK_TOKEN,
@@ -44,7 +44,6 @@ export default function Weather() {
       //Gets all the errors and puts them into an array
       const errors = values.every( value => value.error
       )
-      console.log(values)
       //if no errors are found we set values to data else we print errors
       if(!errors){
         setData(values)
@@ -53,7 +52,7 @@ export default function Weather() {
       }
     })
   }
-
+  //gets data once and sets up updates every 60 mins
   useEffect( () => {
     getWeatherData(locations)
     //Will get new data every hour  and update the app   
@@ -80,8 +79,7 @@ export default function Weather() {
           </Marker>)}
           {selected !== null && 
           <Popup latitude={Number(selected.location.lat)} longitude={Number(selected.location.lon)} onClose={()=> setSelected(null)}>
-            <PopupInfo className="container-popup" {...selected}>
-            </PopupInfo>
+            <PopupInfo {...selected}/>
           </Popup>}
     </ReactMapGL>)
 }

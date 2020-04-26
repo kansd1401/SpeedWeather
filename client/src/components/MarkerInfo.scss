@@ -1,33 +1,33 @@
 .marker{
-  margin-top: -50%;
-  margin-left: -50%;
+  margin-top: -45%;
+  margin-left: -45%;
   color: white;
   display: flex;
   flex-direction: row;
-  max-height: 6rem;
-  border-radius: 20%;
+  max-height: 5.4rem;
+  border-radius: 18%;
   :hover{
     cursor: pointer;
   }
   &__img{
     // border-radius: 10%;
-    border-top-left-radius: 10%;
-    border-bottom-left-radius: 10%;
-    height: 6rem;
-    width: 6rem;
+    border-top-left-radius: 9%;
+    border-bottom-left-radius: 9%;
+    height: 5.4rem;
+    width: 5.4rem;
   }
 
   &__info{
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
     background-color: rgb(167, 167, 167);
-    border-top-right-radius: 10%;
-    border-bottom-right-radius: 10%;
+    border-top-right-radius: 9%;
+    border-bottom-right-radius: 9%;
     p{
-      font-size: larger;
+      font-size: large;
       font-weight: bold;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;  
+      margin-top: 0.45rem;
+      margin-bottom: 0.45rem;  
     }
 
     &--temp{
@@ -35,10 +35,10 @@
       flex-direction: row;
 
       p{
-        font-size: xx-large;
+        font-size: 1.8rem;
         font-weight: bolder;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;  
+        margin-top: 0.45rem;
+        margin-bottom: 0.45rem;  
        }
       div{
         margin: 0.2rem;

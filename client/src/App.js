@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       {/*Sidebar added so we can add more options and functionalities to the web app at a later stage*/}
       <div className="sidebar">
-        <h1>SpeedWeather</h1>
+        <h2>SpeedWeather</h2>
       </div>
         <Weather/>
     </div>
