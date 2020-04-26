@@ -5,7 +5,7 @@ import Weather from "./components"
 function App() {
   return (
     <div className="App">
-      {/*Sidebar added so we can add more options and functionalities to the web app at a later stage*/}
+      {/*Sidebar added so we can add more options and functionalities to the web app at production*/}
       <div className="sidebar">
         <h2>SpeedWeather</h2>
       </div>

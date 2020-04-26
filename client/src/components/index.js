@@ -8,7 +8,7 @@ import PopupInfo from './PopupInfo'
 const locations = [{name: "Dease Lake"},{name: "Fort Nelson"},{name: "Terrace"},{name: "Prince George"},{name: "Whistler"},{name: "Revelstoke"},{name: "Creston"}]
 
 export default function Weather() {
-  //longitude and latitude of bc so we can set that in the viewport of the map
+  //longitude and latitude of bc so we can set that in the viewport of the map. In production you would be able select what provinces you wanna watch over with the help if a dropdown select if the chain as franchises across the country.
   const [viewport,setViewport] = useState({
     latitude:	54.726669,
     longitude: -127.647621,
@@ -41,10 +41,10 @@ export default function Weather() {
       })
     })
     Promise.all(requests).then((values) => {
-      //Gets all the errors and puts them into an array
+      //Gets all the errors and puts them into an array. In prodcution this would send the error data with some info on the client to a api so we can track it after making sure its not users fault.
       const errors = values.every( value => value.error
       )
-      //if no errors are found we set values to data else we print errors
+      //if no errors are found we set values to data else we print errors.
       if(!errors){
         setData(values)
       }else{
@@ -52,10 +52,10 @@ export default function Weather() {
       }
     })
   }
-  //gets data once and sets up updates every 60 mins
+  //gets data once and sets up updates every 60 mins. In production user can choose how often or what time it should get the latest data.
   useEffect( () => {
     getWeatherData(locations)
-    //Will get new data every hour  and update the app   
+    //Will get new data every hour  and update the app.
     setInterval(function(){
         getWeatherData(locations)
     }, 60*60*1000)
@@ -65,7 +65,7 @@ export default function Weather() {
     <ReactMapGL {...viewport}   
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       //Without this function user can't move around or zoom in/out on the map.
-      //Camera currently locked since user will be focusing on only the cities in BC.
+      //Camera currently locked since user will be focusing on only the cities in BC. In production if you have franchises across the country your viewport would locked inside the country so you can move around and zoom in/out on it.
       // onViewportChange={viewport => setViewport(viewport)}
       mapStyle="mapbox://styles/kansd1401/ck9c4xsfg07sc1io0kb0jsvi0">
         {data !== null && data.map( (city,i) => 
