@@ -9,7 +9,10 @@ function App() {
       <div className="sidebar">
         <h2>SpeedWeather</h2>
       </div>
-        <Weather/>
+      <Weather/>
+      <div className="tip">
+        Click on the marker for more info!
+      </div>
     </div>
   );
 }
