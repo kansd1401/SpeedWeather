@@ -11,7 +11,7 @@ function App() {
       </div>
       <Weather/>
       <div className="tip">
-        Click on the marker for more info!
+        <h3>Click on the marker for more info!</h3>
       </div>
     </div>
   );
