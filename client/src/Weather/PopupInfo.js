@@ -1,4 +1,5 @@
 import React from 'react'
+import {Popup} from "react-map-gl"
 import './PopupInfo.scss'
 
 export default function PopupInfo(props) {
@@ -6,6 +7,7 @@ export default function PopupInfo(props) {
 const days = ["SUN","MON","TUE","WED","THU","FRI","SAT"]
 const day = new Date()
   return (
+     <Popup latitude={Number(props.location.lat)} longitude={Number(props.location.lon)} onClose={()=> props.setSelected(null)}>
       <div className="popup">
         <div className="popup__left">
           <div className="popup__location">
@@ -29,5 +31,6 @@ const day = new Date()
           </div>
         </div>
       </div>
+    </Popup>
   )
 }

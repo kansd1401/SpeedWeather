@@ -5,11 +5,11 @@ import MarkerInfo from './MarkerInfo'
 import PopupInfo from './PopupInfo'
 
 //Manually added data of the locations and its info in production we would be making api calls for this
-const locations = [{name: "Dease Lake"},{name: "Fort Nelson"},{name: "Terrace"},{name: "Prince George"},{name: "Whistler"},{name: "Revelstoke"},{name: "Creston"}]
+const locations = [{name: "Dease Lake"},{name: "Fort Nelson"},{name: "Terrace"},{name: "Prince George"},{name: "Whistler"},{name: "Revelstoke"},{name: "Creston"}]//Todo:
 
 export default function Weather() {
   //longitude and latitude of bc so we can set that in the viewport of the map. In production you would be able select what provinces you wanna watch over with the help if a dropdown select if the chain as franchises across the country.
-  const [viewport,setViewport] = useState({
+  const [viewport,setViewport] = useState({  //Todo: cleanup the states by adding Redux to the production
     latitude:	54.726669,
     longitude: -127.647621,
     width: "100vw",
@@ -20,10 +20,10 @@ export default function Weather() {
   const [selected, setSelected] = useState(null)
   
 
-  const getWeatherData = (locations) => {
-    const requests = locations.map( (location) => {
+  const getWeatherData = (locations) => { //Todo: put this function in a seperate file to clean up index file
+    const requests = locations.map( (location) => { //Also unit test this function with fake data
       return new Promise( (resolve, reject) => {
-        $.ajax({
+        $.ajax({ //Todo: use axios instead of jquery it will help with testing
           url: "https://api.weatherstack.com/current",
           type: "GET",
           data: { 
@@ -45,7 +45,7 @@ export default function Weather() {
       const errors = values.every( value => value.error
       )
       //if no errors are found we set values to data else we print errors.
-      if(!errors){
+      if(!errors){ //Todo: 
         setData(values)
       }else{
         console.log("Trouble retrieving live weather data from API")
@@ -66,20 +66,16 @@ export default function Weather() {
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       //Without this function user can't move around or zoom in/out on the map.
       //Camera currently locked since user will be focusing on only the cities in BC. In production if you have franchises across the country your viewport would locked inside the country so you can move around and zoom in/out on it.
-      // onViewportChange={viewport => setViewport(viewport)}
+      // onViewportChange={viewport => setViewport(viewport)}  //Todo: Unlock letting the user move around the map                                                            maybe lock it ti a country 
       mapStyle="mapbox://styles/kansd1401/ck9c4xsfg07sc1io0kb0jsvi0">
         {data !== null && data.map( (city,i) => 
-          <Marker key={i} latitude={Number(city.location.lat)} longitude={Number(city.location.lon)}> 
             <MarkerInfo 
+              key={i}
               onClick={() => setSelected(city)}
               current={city.current}
-              name={city.location.name}
+              location={city.location}
               selected={selected ? selected.location.name === city.location.name: false}
-            />
-          </Marker>)}
-          {selected !== null && 
-          <Popup latitude={Number(selected.location.lat)} longitude={Number(selected.location.lon)} onClose={()=> setSelected(null)}>
-            <PopupInfo {...selected}/>
-          </Popup>}
+            />)}
+          {selected !== null && <PopupInfo {...selected} setSelected={setSelected}/>}
     </ReactMapGL>)
 }
