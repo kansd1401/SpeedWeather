@@ -10,6 +10,8 @@ SpeedWeather is a simple web app that shows the current weather data of some cit
 
 ## Setup
 
+After cloning from inside the project folder `cd client`
+
 Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
