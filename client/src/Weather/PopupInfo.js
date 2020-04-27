@@ -4,7 +4,7 @@ import './PopupInfo.scss'
 
 export default function PopupInfo(props) {
   //We can use get day to display todays day.
-const days = ["SUN","MON","TUE","WED","THU","FRI","SAT"]
+const days = ["SUN","MON","TUE","WED","THU","FRI","SAT"] //Todo: Move to a utility function file where we just get todays day and add unit test to it
 const day = new Date()
   return (
      <Popup latitude={Number(props.location.lat)} longitude={Number(props.location.lon)} onClose={()=> props.setSelected(null)}>

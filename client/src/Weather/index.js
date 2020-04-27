@@ -21,6 +21,7 @@ export default function Weather() {
   
 
   const getWeatherData = (locations) => { //Todo: put this function in a seperate file to clean up index file
+    //requests get a array of promises with API calls per location.
     const requests = locations.map( (location) => { //Also unit test this function with fake data
       return new Promise( (resolve, reject) => {
         $.ajax({ //Todo: use axios instead of jquery it will help with testing
@@ -41,7 +42,7 @@ export default function Weather() {
       })
     })
     Promise.all(requests).then((values) => {
-      //Gets all the errors and puts them into an array. In prodcution this would send the error data with some info on the client to a api so we can track it after making sure its not users fault.
+      //Checks the array for errors.
       const errors = values.every( value => value.error
       )
       //if no errors are found we set values to data else we print errors.
@@ -52,7 +53,8 @@ export default function Weather() {
       }
     })
   }
-  //gets data once and sets up updates every 60 mins. In production user can choose how often or what time it should get the latest data.
+  //gets data once and sets up updates every 60 mins. 
+  //Todo: In production user can choose how often or what time it should get the latest data.
   useEffect( () => {
     getWeatherData(locations)
     //Will get new data every hour  and update the app.
@@ -66,7 +68,7 @@ export default function Weather() {
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       //Without this function user can't move around or zoom in/out on the map.
       //Camera currently locked since user will be focusing on only the cities in BC. In production if you have franchises across the country your viewport would locked inside the country so you can move around and zoom in/out on it.
-      // onViewportChange={viewport => setViewport(viewport)}  //Todo: Unlock letting the user move around the map                                                            maybe lock it ti a country 
+      // onViewportChange={viewport => setViewport(viewport)}  //Todo: Unlock letting the user move around the map maybe lock it to a country 
       mapStyle="mapbox://styles/kansd1401/ck9c4xsfg07sc1io0kb0jsvi0">
         {data !== null && data.map( (city,i) => 
             <MarkerInfo 

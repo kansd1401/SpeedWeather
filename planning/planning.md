@@ -4,13 +4,15 @@
 
 - user can check the side tab for extra information regarding the weather in each city
 
-- user sees the current map information
+- user sees the current weather information
 
 - user can see updates on the weather every hour
 
 # Teck Stack
 
 - Reactjs, Google maps, WeatherStack api.
+
+- We ended up with Reactjs, Mapbox and WeatherStack api.
 
 # Limitations
 
