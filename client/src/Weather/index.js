@@ -5,7 +5,7 @@ import MarkerInfo from './MarkerInfo'
 import PopupInfo from './PopupInfo'
 
 //Manually added data of the locations and its info in production we would be making api calls for this
-const locations = [{name: "Dease Lake"},{name: "Fort Nelson"},{name: "Terrace"},{name: "Prince George"},{name: "Whistler"},{name: "Revelstoke"},{name: "Creston"}]//Todo:
+const locations = [{name: "Dease Lake"},{name: "Fort Nelson"},{name: "Terrace"},{name: "Prince George"},{name: "Vancouver"},{name: "Revelstoke"},{name: "Creston"}]//Todo:
 
 export default function Weather() {
   //longitude and latitude of bc so we can set that in the viewport of the map. In production you would be able select what provinces you wanna watch over with the help if a dropdown select if the chain as franchises across the country.
